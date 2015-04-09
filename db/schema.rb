@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150409150621) do
+ActiveRecord::Schema.define(version: 20150409150957) do
 
   create_table "polls", force: true do |t|
     t.string   "title"
@@ -19,6 +19,15 @@ ActiveRecord::Schema.define(version: 20150409150621) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "questions", force: true do |t|
+    t.text     "text",       null: false
+    t.integer  "poll_id",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "questions", ["poll_id"], name: "index_questions_on_poll_id"
 
   create_table "users", force: true do |t|
     t.string   "user_name"
